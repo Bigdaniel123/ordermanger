@@ -1,0 +1,121 @@
+.body{
+    background-color: #f7f7f7;
+}
+.body .public-container .breadcrumb a{
+    padding-top:17px;
+    padding-bottom:17px;
+}
+.body .public-container .img{
+    width:100%;
+}
+.body .public-container .text{
+    background-color: #ffffff;
+}
+.body .public-container .text .title{
+    text-align: center;
+    padding-top:50px;
+    padding-bottom: 62px;
+}
+.body .public-container .text .title .shang{
+    font-size: 30px;
+    color: #ff7300;
+    font-family: HYQiHeiX2-55W;
+}
+.body .public-container .text .title .xia{
+    font-size: 15px;
+    color: #ff7300;
+    font-family: HYQiHeiX2-35W;
+}
+.body .public-container .text .jieshao{
+    /*padding-left:219px;*/
+}
+.body .public-container .text .jieshao .shang{
+    padding-bottom: 45px;
+    padding-left:219px;
+}
+.body .public-container .text .jieshao .shang p{
+    padding-bottom: 15px;
+    font-family: HYQiHeiX2-35W;
+    font-size: 16px;
+    color: #323232;
+}
+.body .public-container .text .jieshao .xia{
+    padding-left:219px;
+}
+
+.body .public-container .text .jieshao .xia p{
+    padding-bottom: 15px;
+    font-family: HYQiHeiX2-35W;
+    font-size: 16px;
+    color: #323232;
+}
+.body .public-container .text .jieshao img{
+    margin:0 auto;
+}
+.body .public-container .text .content{
+    padding-bottom: 300px;
+    padding-top: 50px;
+    height:470px;
+}
+/*下正文左*/
+.body .public-container .text .content .left{
+    float: left;
+    width:570px;
+    padding-right: 120px;
+    padding-left: 80px;
+}
+.body .public-container .text .content .left .shangwu{
+    border-bottom: 1px solid #323232;
+}
+.body .public-container .text .content .left .shangwu p{
+    font-size: 26px;
+    font-family: HYQiHeiX2-45W;
+    color: #ff7300;
+}
+.body .public-container .text .content .left .shangwu span{
+    width:100px;
+    border-bottom: 4px solid #ff7300;
+    display: inline-block;
+    position: relative;
+    top:8px;
+}
+.body .public-container .text .content .left .shang{
+    padding-bottom:40px;
+    padding-top: 40px;
+}
+.body .public-container .text .content .left .zhong{
+    padding-bottom: 40px;
+}
+.body .public-container .text .content .left .xia{
+    padding-bottom: 40px;
+}
+/*下正文右*/
+.body .public-container .text .content .right{
+    float: left;
+    width:570px;
+}
+.body .public-container .text .content .right .shang{
+    padding-bottom:40px;
+    padding-top: 40px;
+}
+.body .public-container .text .content .right .zhong{
+    padding-bottom:40px;
+}
+.body .public-container .text .content .right .xia{
+    padding-bottom:40px;
+}
+.body .public-container .text .content .right .shejiao{
+    border-bottom: 1px solid #323232;
+}
+.body .public-container .text .content .right .shejiao p{
+    font-size: 26px;
+    font-family: HYQiHeiX2-45W;
+    color: #ff7300;
+}
+.body .public-container .text .content .right .shejiao span{
+    width:100px;
+    border-bottom: 4px solid #ff7300;
+    display: inline-block;
+    position: relative;
+    top:8px;
+}

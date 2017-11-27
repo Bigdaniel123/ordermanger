@@ -1,0 +1,183 @@
+.body{
+    background-color: #f7f7f7;
+}
+.body .public-container .breadcrumb{
+    height:50px;
+    font-family: HYQiHeiX1-35W;
+    font-size: 16px;
+    color: #323232;
+}
+.body .public-container .breadcrumb a{
+    padding-top: 16px;
+}
+.body .public-container .img{
+    width:100%;
+}
+.body .public-container .text{
+    background-color: #ffffff;
+    height:863px;
+}
+.body .public-container .text .info{
+    width:100%;
+    height:80px;
+    border-bottom: 2px solid #999999;
+    /*padding-bottom: 200px;*/
+}
+.body .public-container .text .info .yincang{
+    display: none;
+}
+.body .public-container .text .info .div{
+    width:25%;
+    float: left;
+    text-align: center;
+    font-size: 24px;
+    font-family: HYQiHeiX1-35W;
+    color: #999999;
+    padding-top: 25px;
+}
+.body .public-container .info .span{
+    /*position: relative;*/
+    /*border-bottom: 3px solid #ff7300;*/
+    /*display: inline-block;*/
+    /*height:52px;*/
+}
+/*第一个公司介绍*/
+.body .public-container .info .xuanxiang{
+    margin:0 auto;
+    padding-top: 180px;
+}
+.body .public-container .info .xuanxiang .shang{
+    /*text-align: center;*/
+    padding-left: 110px;
+
+}
+.body .public-container .info .xuanxiang .shang p{
+    font-size: 18px;
+    font-family: HYQiHeiX1-35W;
+    color: #323232;
+    padding-top:20px ;
+}
+.body .public-container .info .xuanxiang .xia{
+    /*text-align: center;*/
+    padding-left: 130px;
+    padding-top: 80px;
+}
+.body .public-container .info .xuanxiang .xia li{
+    font-size: 18px;
+    font-family: HYQiHeiX1-35W;
+    color: #323232;
+    padding-top:20px;
+
+}
+.body .public-container .info .xuanxiang .xia li:before{
+    list-style: disc;
+    color: #ff8904;
+    content: '●';
+    padding-right: 30px;
+}
+/*第二个组织架构*/
+/*第三个发展历程*/
+/*第四个员工信息*/
+.body .public-container .info .xuanxiang{
+    margin:0 auto;
+    padding-top: 180px;
+}
+.body .public-container .info .xuanxiang .xinxi{
+    font-size: 18px;
+    font-family: HYQiHeiX1-35W;
+    color: #323232;
+    text-align: center;
+}
+.body .public-container .info .xuanxiang .num{
+    text-align: center;
+    padding-top: 20px;
+}
+.body .public-container .info .xuanxiang .num .renshu {
+    font-size: 16px;
+    font-family: HYQiHeiX1-35W;
+    text-align: center;
+    display: inline-block;
+    background-color: #88cbff;
+    border:1px solid;
+    border-radius: 5px;
+    margin:0 auto;
+
+}
+.body .public-container .info .xuanxiang .font{
+    margin:0 auto;
+    padding-top: 100px;
+    /*height:372px;*/
+    margin-left: 274px;
+}
+.body .public-container .info .xuanxiang .font p{
+    text-align: center;
+}
+.body .public-container .info .xuanxiang .font .zuo{
+    float: left;
+    width:26%;
+    height:372px;
+}
+.body .public-container .info .xuanxiang .font .zuo .renshu{
+    text-align: center;
+    border:1px solid #323232;
+    border-bottom: 0;
+    border-right: 0;
+    font-size: 18px;
+    font-family: HYQiHeiX1-35W;
+    color: #323232;
+}
+.body .public-container .info .xuanxiang .font .zuo .div1{
+    font-size: 14px;
+    font-family: HYQiHeiX1-35W;
+    color: #323232;
+    border:1px solid #323232;
+    border-right: 0;
+    width:100%;
+}
+/*.body .public-container .info .xuanxiang .font .zuo .div1 p{*/
+    /*text-align: center;*/
+/*}*/
+.body .public-container .info .xuanxiang .font .zhong{
+    float: left;
+    width:26%;
+    height:372px;
+}
+.body .public-container .info .xuanxiang .font .zhong .nianling{
+    text-align: center;
+    border:1px solid #323232;
+    border-right: 0;
+    border-bottom: 0;
+    font-size: 18px;
+    font-family: HYQiHeiX1-35W;
+    color: #323232;
+}
+.body .public-container .info .xuanxiang .font .zhong .div1{
+    font-size: 14px;
+    font-family: HYQiHeiX1-35W;
+    color: #323232;
+    border:1px solid #323232;
+    border-right: 0;
+    width:100%;
+}
+.body .public-container .info .xuanxiang .font .you{
+    float: left;
+    width:26%;
+    height:372px;
+}
+.body .public-container .info .xuanxiang .font .you .xueli{
+    width:100%;
+    text-align: center;
+    border:1px solid #323232;
+    border-bottom: 0;
+    font-size: 18px;
+    font-family: HYQiHeiX1-35W;
+    color: #323232;
+}
+.body .public-container .info .xuanxiang .font .you .div1{
+
+    border:1px solid #323232;
+    width:100%;
+    font-size: 14px;
+    font-family: HYQiHeiX1-35W;
+    color: #323232;
+}

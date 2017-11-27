@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>白鹭林集团</title>
+    <link rel="stylesheet" type="text/css" href="__TMPL__Public/assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="__TMPL__Public/assets/css/commen.css">
+    <link rel="stylesheet" type="text/css" href="__TMPL__Public/assets/css/index.css">
+    <link rel="stylesheet" type="text/css" href="__TMPL__Public/assets/css/news.css">
+    <script>
+        var bailunews = function(){
+            var news = document.getElementById('news');
+            if(news.style.display == 'none'){
+                news.style.display = 'block';
+            }else{
+                news.style.display='none';
+            }
+        }
+        var chakan= function(){
+            var cha = document.getElementById('cha');
+                if(cha.style.display =='none'){
+                    cha.style.display = 'block';
+                }else{
+                    cha.style.display = 'none';
+                }
+
+        }
+    </script>
+</head>
+<body>
+<!--头部-->
+<tc_include file="Public:nav"/>
+<!--中间部分-->
+<div class="body">
+    <div class="public-container">
+        <!--Breadcrumb导航-->
+        <div class="breadcrumb">
+            <a href="">首页 > 新闻资讯</a>
+        </div>
+        <img  class="hdimg" src="__TMPL__Public/assets/image/news/news.png">
+        <!--新闻标题-->
+        <div class="baise">
+            <div>
+                <p class="shang">●新闻资讯●</p>
+                <p class="xia">NEWS INFORMATION</p>
+            </div>
+            <!--最新资讯-->
+            <div class="zixun">
+                <p><span>白鹭控</span>股集团最新资讯</p>
+            </div>
+            <!--左右栏-->
+            <div class="zuoyoulan">
+                <div class="left">
+                    <div class="news">
+                        <ul>
+                            <li>公告: 关于宁波白鹭控股集团有限公司的成立&nbsp &nbsp &nbsp &nbsp     <span style="padding-right: 158px"></span>2017-07-11</li>
+                            <li>公告: 关于宁波白鹭控股集团有限公司的人事任命  <span style="padding-right: 158px"></span>2017-08-11</li>
+                            <li>公告: 关于宁波白鹭控股集团有限公司的人事任命  <span style="padding-right: 158px"></span>2017-08-11</li>
+                            <li>公告: 关于宁波白鹭控股集团有限公司的人事任命  <span style="padding-right: 158px"></span>2017-08-11</li>
+                            <li>公告: 关于宁波白鹭控股集团有限公司的人事任命  <span style="padding-right: 158px"></span>2017-08-11</li>
+                        </ul>
+                    </div>
+                    <div class="chakan">
+                        <a href="javascript:void(0)" onclick="chakan()" >查看更多  >></a>
+                        <div id="cha" style="display:none;position: absolute;top:700px;width:200px;height:200px;background-color: #8BC34A;"><p style="color:#fff;text-align: center">详细信息</p></div>
+                    </div>
+                </div>
+                <div class="right">
+                    <img src="__TMPL__Public/assets/image/news/new.png">
+                    <!--<img src="__TMPL__Public/assets/image/news/">-->
+                </div>
+            </div>
+            <!--正文下-->
+            <div class="zhengwenfoot">
+                <div class="zhengwenleft">
+                    <img src="__TMPL__Public/assets/image/news/windows.png">
+                </div>
+                <div class="zhengwenright">
+                    <div class="newest">
+                        <p><span>白鹭控</span>股集团最新资讯</p>
+                    </div>
+                    <ul>
+                        <li class="li">&nbsp &nbsp &nbsp一般的理解，互联网技术在金融中的应</br>
+                            用现在已经是相当普遍了
+                        </li>
+                        <li class="lii" style="padding-left: 280px; ">2017-08-11</li>
+                        <li class="li">
+                            &nbsp &nbsp &nbsp一般的理解，互联网技术在金融中的应</br>
+                            用现在已经是相当普遍了
+                        </li>
+                        <li class="lii" style="padding-left: 280px;">2017-08-11</li>
+                        <li class="li">
+                            &nbsp &nbsp &nbsp一般的理解，互联网技术在金融中的应</br>
+                            用现在已经是相当普遍了
+                        </li>
+                        <li class="lii" style="padding-left: 280px;">2017-08-11</li>
+                    </ul>
+                    <div class="more">
+                        <a href="javascript:void(0)" onclick="bailunews()">查看更多 >></a>
+                        <div id="news" style="display:none;background-color: #ff7300;width: 200px;height: 200px;position: absolute;top:1500px ;"><p style="color: #fff;text-align: center">详细信息</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<tc_include file="Public:footer"/></body>
+</html>

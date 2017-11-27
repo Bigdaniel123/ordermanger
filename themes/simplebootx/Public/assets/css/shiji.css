@@ -1,0 +1,12 @@
+.body{
+    background-color: #f7f7f7;
+}
+.body .public-container{
+    height:500px;
+    background-color: #ffffff;
+}
+.body .public-container .shiji{
+    height:400px;
+    padding-top:200px;
+    margin:0 auto;
+}

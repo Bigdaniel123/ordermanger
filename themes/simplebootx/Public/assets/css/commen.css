@@ -1,0 +1,87 @@
+/*公共头部*/
+*{
+    margin: 0;
+    padding:0;
+}
+a{
+    color: #000;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.public-container{
+    width:80%;
+    margin:0 auto;
+    float: none;
+}
+/*顶部*/
+.public-header .header-top {
+    height:40px;
+    background-color: #232a36;
+    /*line-height: 14px;*/
+    float: none;
+    width:100%;
+}
+.public-header .header-top .public-container  span{
+    height:20px;
+    display: block;
+    float: left;
+    /*padding-right:570px;*/
+    color: #ffffff;
+    font-size: 14px;
+    text-align: center;
+    padding-top: 10px;
+}
+.public-header .header-top .public-container  img{
+    float: left;
+    padding-top:4px;
+    vertical-align:middle;
+}
+.public-header .header-top .public-container .header-nav{
+    float: right;
+    padding-top: 10px;
+    height:14px;
+}
+.public-header .header-top .public-container .header-nav .item{
+    float: left;
+    /*text-align: center;*/
+    /*display: inline;*/
+    font-size: 14px;
+    padding-right:14px ;
+    padding-left: 14px;
+    border-right: 2px solid #fff;
+    line-height: 14px;
+}
+.public-header .header-top .public-container .header-nav .item img{
+    text-align: center;
+    padding-right: 5px;
+}
+.public-header .header-top .public-container .header-nav .item a{
+    color: #fff;
+    text-align: center;
+}
+/*导航*/
+.public-header .header-foot .public-container {
+    height:92px;
+    margin:0 auto;
+}
+.public-header .header-foot .public-container .header-logo{
+    float: left;
+    margin-top: 20px;
+}
+.public-header .header-foot .public-container .header-nav1{
+    float: right;
+}
+.public-header .header-foot .public-container .header-nav1 .item1{
+    float: left;
+    font-size: 16px;
+    padding-right:40px;
+    /*text-align: center;*/
+    margin-top: 20px;
+}
+.public-header .header-foot .public-container .header-nav1 .item1.active a{
+    color: #ff8904;
+    font-size: 18px;
+}

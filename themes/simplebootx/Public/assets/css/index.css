@@ -1,0 +1,419 @@
+/*中间灰色部分*/
+.inform{
+    background-color: #f0f0f0;
+    height:44px;
+}
+.inform .public-container .inform-left{
+    vertical-align: middle;
+    text-align: center;
+    padding-top: 10px;
+}
+.inform .public-container{
+    text-align: center;
+
+}
+.inform .public-container .inform-left img{
+    float: left;
+    /*margin:0 auto;*/
+    padding-top: 3px;
+    padding-right: 10px;
+}
+.inform .public-container .inform-left p{
+    float: left;
+    /*color: #c9c9c9;*/
+
+}
+.inform .public-container a{
+    float: right;
+
+}
+/*内容*/
+
+/*内容上*/
+.content .public-container .content-top{
+    margin:0 auto;
+
+}
+.content .public-container .content-top .top-title{
+   text-align: center;
+    padding-bottom: 50px;
+
+}
+.content .public-container .content-top .top-title .service{
+    margin:0 auto;
+    margin-top: 80px;
+    width:277px;
+    color: #ff8904;
+    border-bottom: 2px solid #848080;
+    font-size: 40px;
+    text-align: center;
+
+}
+.content .public-container .content-top .top-title p{
+    color: #323232;
+    padding-top: 26px;
+    display:block;
+    font-size: 16px;
+    font-family: HYQiHeiX1-45W;
+}
+.content .public-container .content-top .top-title .service span{
+    border-bottom: 4px solid #ff8904;
+}
+/*内容中*/
+.content .public-container .top-content{
+    margin-top: 10px;
+    width:80%;
+    margin:0 auto;
+    overflow: hidden;
+}
+.content .public-container .top-content .left{
+    float: left;
+    width:250px;
+    padding-left:147px;
+    /*padding-right: 60px;*/
+
+}
+.content .public-container .top-content .middle{
+    float: left;
+    width:250px;
+    padding-right: 120px;
+    padding-left: 120px;
+
+}
+.content .public-container .top-content .right{
+    float:right;
+    width:250px;
+    /*padding-left: 60px;*/
+    padding-right: 80px;
+
+}
+/*下中黄条*/
+.content .public-container .content-top .top-foot{
+    height:60px;
+    background-image:url(../image/index/juxing.png);
+    background-color: #ff8904;
+    margin-top: 80px;
+}
+.content .public-container .content-top .top-foot .left{
+    float: left;
+    line-height: 60px;
+    padding-left: 400px;
+}
+.content .public-container .content-top .top-foot .middle{
+    float: left;
+    line-height: 60px;
+    padding-left: 310px;
+}
+.content .public-container .content-top .top-foot .right{
+    float: left;
+    line-height: 60px;
+    padding-left: 340px;
+}
+/*下标题*/
+.content .public-container .content-foot{
+    margin:0 auto;
+    margin-bottom: 100px;
+}
+.content .public-container .content-foot .foot-title{
+    text-align: center;
+    padding-bottom: 50px;
+}
+.content .public-container .content-foot .foot-title .trends{
+    margin:0 auto;
+    margin-top: 80px;
+    width:277px;
+    color: #ff8904;
+    border-bottom: 2px solid #848080;
+    font-size: 40px;
+    text-align: center;
+
+}
+.content .public-container .content-foot .foot-title b{
+    color: #848080;
+    padding-top: 20px;
+    display:block;
+    font-family: HYQiHeiX1-55W;
+}
+.content .public-container .content-foot .foot-title .trends span{
+    border-bottom: 4px solid #ff8904;
+}
+/*下话题*/
+.content .public-container .content-foot .dongtai{
+    height:300px;
+}
+/*下话题左*/
+.content .public-container .content-foot .dongtai .gengxin{
+    width:248px;
+    height:284px;
+    background-color:#ff8904 ;
+    float: left;
+    position: absolute;
+    top:1600px;
+    left:300px;
+}
+.content .public-container .content-foot .dongtai .gengxin .juzhong{
+    margin:0 auto;
+    padding-top: 60px;
+}
+.content .public-container .content-foot .dongtai .gengxin .juzhong .one{
+    color:#ffffff;
+    font-size: 40px;
+    text-align: center;
+}
+.content .public-container .content-foot .dongtai .gengxin .juzhong .two{
+    color:#ffffff;
+    font-size: 30px;
+    text-align: center;
+}
+.content .public-container .content-foot .dongtai .gengxin .juzhong .three{
+    color:#ffffff;
+    font-size: 10px;
+    text-align: center;
+    margin-top: 10px;
+}
+.content .public-container .content-foot .dongtai .gengxin .juzhong .four{
+   background-color:#ffffff;
+    margin:0 auto;
+    text-align: center;
+    width:154px;
+    height:35px;
+    padding-top: 15px;
+    margin-top: 10px;
+}
+.content .public-container .content-foot .dongtai .gengxin .juzhong .four a{
+    font-size: 15px;
+    color: #ff8904;
+    /*text-align: center;*/
+    margin:0 auto;
+}
+/*下话题右*/
+.content .public-container .content-foot .dongtai .topic{
+    float: left;
+    width:1226px;
+    height:263px;
+    margin-left: 157px;
+    background-color: #b3def2;
+
+}
+.content .public-container .content-foot .dongtai .topic .left{
+    margin-left: 400px;
+    /*text-align: center;*/
+    padding-top:37px;
+    width:30%;
+}
+.content .public-container .content-foot .dongtai .topic .left .font{
+    padding-top: 10px;
+}
+.content .public-container .content-foot .dongtai .topic .left .font .wenzi{
+    padding-top: 10px;
+    font-family: HYQiHeiX1-35W;
+    font-size: 14px;
+    color: #323232;
+}
+.content .public-container .content-foot .dongtai .topic .right{
+    float: right;
+    margin-top: -245px;
+}
+.content .public-container .content-foot .dongtai .topic ul{
+    margin-right: 30px;
+    color:#323232;
+}
+.content .public-container .content-foot .dongtai .topic .lii{
+    padding-top: 6px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed #ffffff;
+}
+.content .public-container .content-foot .dongtai .topic .li{
+    padding-top: 10px;
+    font-family: HYQiHeiX1-35W;
+    font-size: 14px;
+}
+.content .public-container .content-foot .dongtai .topic .li:before{
+    /*padding-top: 10px;*/
+    /*display: none;*/
+    list-style: disc;
+    color: #ff8904;
+    content: '●';
+}
+/*黄色合作伙伴*/
+.public-yellow{
+    background-color: #ffecd2;
+    height:364px;
+    /*margin-top: 117px;*/
+}
+.public-yellow .public-container .partner{
+    padding-top: 30px;
+}
+.public-yellow .public-container .partner .title{
+    margin:0 auto;
+    text-align: center;
+    width:268px;
+    margin-top: 30px;
+}
+.public-yellow .public-container .partner .title p{
+    font-size: 35px;
+    color:#ff7300;
+    font-family: HYQiHeiX1-55W;
+    border-bottom: 2px solid #d7d4d4;
+}
+.public-yellow .public-container .partner .title span{
+    border-bottom: 5px solid #ff7300;
+}
+.public-yellow .public-container .partner .word{
+    margin:0 auto;
+    text-align: center;
+    display:block;
+    margin-top: 16px;
+}
+.public-yellow .public-container .partner .bank-top{
+    /*margin-top: 20px;*/
+    margin:0 auto;
+    text-align: center;
+    width:940px;
+    margin-left: 330px;
+    margin-top: 20px;
+}
+
+.public-yellow .public-container .partner .bank-top a{
+    padding-left: 10px;
+    float: left;
+    padding-top: 20px;
+}
+.public-yellow .public-container .partner .bank-bottom{
+    float: left;
+    width:50%;
+    margin:0 auto;
+    margin-left: 450px;
+    margin-top: 20px;
+}
+.public-yellow .public-container .partner .bank-bottom a{
+    padding-left: 10px;
+    float: left;
+    padding-top: 20px;
+    /*padding-left: ;*/
+}
+/*链接*/
+.link{
+    height:96px;
+    width:1000px;
+    margin:0 auto;
+}
+.link .bottom-link{
+    line-height: 94px;
+}
+.link .bottom-link li{
+    float: left;
+    padding-left: 15px;
+}
+/*页尾*/
+.public-foot{
+    height:336px;
+    background-color: #000000;
+}
+/*首页页尾左*/
+.public-foot .public-container .footer-left{
+    float:left;
+    /*width:40%;*/
+    /*border-right: 1px solid #ebebeb;*/
+    margin-right:190px;
+    margin-top:50px;
+    text-align: center;
+}
+.public-foot .public-container .footer-left .footer-left-col img{
+    padding-right: 5px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.public-foot .public-container .footer-left .footer-left-col {
+    float: left;
+    margin-left:26px;
+}
+.public-foot .public-container .footer-left .footer-left-col a{
+    text-align: center;
+    margin-top: 5px;
+    color: #ffffff;
+}
+
+
+/*首页脚中*/
+.public-foot .public-container .footer-center{
+    float:left;
+    /*width:20%;*/
+    border-right: 1px solid #ebebeb;
+    padding-right:110px ;
+    color: #ffffff;
+    border-left:1px solid #ebebeb;
+    text-align: center;
+    padding-left: 110px;
+    margin-top:50px;
+
+}
+.public-foot .public-container .footer-center .weixin{
+    /*float: left;*/
+    padding-top:30px;
+    /*padding-left:34px;*/
+    display: inline-block;
+    margin:0 auto;
+
+}
+.public-foot .public-container .footer-center .weixin li:last-child{
+    font-size: 13px;
+    text-align: center;
+}
+/*.public-foot .public-container .footer-center .weibo li:last-child{*/
+    /*font-size: 13px;*/
+    /*text-align: center;*/
+/*}*/
+/*.public-foot .public-container .footer-center .weibo{*/
+    /*float: left;*/
+    /*padding-left:52px;*/
+    /*padding-top:30px;*/
+    /*display: inline-block;*/
+
+/*}*/
+.public-foot .public-container .footer-center img{
+    width:124px;
+    height:124px;
+    float: left;
+
+
+}
+/*首页脚右*/
+.public-foot .public-container .footer-right{
+    /*width:40%;*/
+    padding-right: 130px;
+    float:right;
+    margin-top:50px;
+}
+.public-foot .public-container .footer-right .tel{
+    float: left;
+    text-align: left;
+}
+.public-foot .public-container .footer-right img{
+    padding-right: 5px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.public-foot .public-container .footer-right  a{
+    float: left;
+    color: #ffffff;
+}
+.public-foot .public-container .footer-right  li {
+    margin-top: 8px;
+    color: #ffffff;
+}
+/*公共部分底部*/
+.public-footer{
+    background-color: #161615;
+    height:93px;
+}
+.public-footer .public-container{
+    padding-top:10px;
+}
+.public-footer .public-container p{
+    padding-top: 10px;
+    text-align: center;
+    font-family: "微软雅黑 Light";
+    font-size: 16px;
+    color:#999999
+}

@@ -1,0 +1,147 @@
+.body{
+    background-color: #f7f7f7;
+}
+.body .public-container .breadcrumb{
+    height:50px;
+    font-family: HYQiHeiX1-35W;
+    font-size: 16px;
+    color: #323232;
+}
+.body .public-container .breadcrumb a{
+    padding-top: 16px;
+}
+.body .public-container .img{
+    width:100%;
+}
+.body .public-container .text{
+    background-color: #ffffff;
+}
+.body .public-container .text .shang{
+    text-align: center;
+    padding-top: 60px;
+    color:#ff7300;
+    font-family: HYQiHeiX2-55W;
+    font-size: 30px;
+}
+.body .public-container .text .xia{
+    text-align: center;
+    color:#ff7300;
+    font-family: HYQiHeiX2-35W ;
+    font-size: 14px;
+}
+/*图标*/
+.body .public-container .text .tubiao{
+    margin-top: 42px;
+    margin:0 auto;
+    height:300px;
+    margin-left: 310px;
+}
+.body .public-container .text .tubiao .shang{
+    margin: 0 auto;
+    float: left;
+    margin-bottom: 30px;
+}
+.body .public-container .text .tubiao .shang .tu{
+    float: left;
+    width:193px;
+    height:134px;
+    border:1px solid #e3e3e3;
+    margin-left: 20px;
+}
+.body .public-container .text .tubiao .shang .tu.active{
+    background-color:#ff7300 ;
+    
+}
+.body .public-container .text .tubiao .shang .tu.active p{
+    color: #ffffff;
+}
+/*.body .public-container .text .tubiao .shang .tu.active img{*/
+ /**/
+/*}*/
+.body .public-container .text .tubiao .shang .tu img{
+    margin:0 auto;
+    padding-top: 20px;
+}
+.body .public-container .text .tubiao .shang .tu p{
+    font-family: HYQiHeiX2-45W;
+    font-size: 18px;
+    color: #959595;
+    text-align: center;
+    padding-top: 5px;
+}
+.body .public-container .text .tubiao .xia{
+    margin:0 auto;
+    float: left;
+    margin-bottom: 30px;
+}
+.body .public-container .text .tubiao .xia .tu{
+    float: left;
+    width:193px;
+    height:134px;
+    border:1px solid #e3e3e3;
+    margin-left: 20px;
+}
+.body .public-container .text .tubiao .xia .tu img{
+    margin:0 auto;
+    padding-top: 20px;
+}
+.body .public-container .text .tubiao .xia .tu p{
+    font-family: HYQiHeiX2-45W;
+    font-size: 18px;
+    color: #959595;
+    text-align: center;
+    padding-top: 5px;
+}
+/*正文下*/
+.body .public-container .text .dizhi{
+    margin-top:150px;
+    /*margin-bottom: 310px;*/
+    overflow: hidden;
+    padding-bottom: 200px;
+}
+.body .public-container .text .dizhi .ditu{
+    float: left;
+    width:740px;
+    height:353px;
+}
+.body .public-container .text .dizhi .ditu img{
+    width:740px;
+    height:353px;
+}
+.body .public-container .text .dizhi .lianxi{
+    float: left;
+    /*text-align: center;*/
+    margin: 0 auto;
+    margin-left: 100px;
+}
+.body .public-container .text .dizhi .lianxi .p{
+    font-family: HYQiHeiX2-45W;
+    color: #323232;
+    font-size: 14px;
+}
+.body .public-container .text .dizhi .lianxi input {
+    border:1px solid #ff7300 ;
+    border-radius: 5px;
+    height:32px;
+    line-height: 8px;
+    /*text-align: center;*/
+    /*width:103px;*/
+    /*height:32px;*/
+}
+/*.body .public-container .text .dizhi .lianxi input:nth-child(2){*/
+    /*border:1px solid #ff7300 ;*/
+    /*border-radius: 5px;*/
+    /*!*width:165px;*!*/
+    /*!*height:32px;*!*/
+/*}*/
+.body .public-container .text .dizhi .lianxi .text{
+    width:291px;
+    height:183px;
+    border-radius: 5px;
+    border:1px solid #ff7300 ;
+    margin-top: 10px;
+}
+.body .public-container .text .dizhi .lianxi .tijiao[disabled]{
+    color: #ffffff;
+    opacity:1
+}

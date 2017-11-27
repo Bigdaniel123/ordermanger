@@ -1,0 +1,23 @@
+.body{
+    background-color: #f7f7f7;
+}
+.body .public-container{
+    background-color: #ffffff;
+    height:500px;
+}
+.body .public-container .dongtai{
+    height:400px;
+    background-color:#94d8cf;
+    margin:0 auto;
+}
+.body .public-container .dongtai ul{
+    margin:0 auto;
+    padding-top: 100px;
+}
+.body .public-container .dongtai li{
+    padding-top: 10px;
+    font-family: HYQiHeiX1-55W;
+    font-size: 22px;
+    color: #323232;
+    text-align: center;
+}

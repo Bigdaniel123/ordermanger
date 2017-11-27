@@ -1,0 +1,179 @@
+<admintpl file="header" />
+
+</head>
+<body>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:U('index')}">全部列表</a></li>
+        <li class="active"><a>放款</a></li>
+    </ul>
+    <form method="post" class="form-horizontal js-ajax-form"  action="{:U('Fangkuan/add')}">
+        <fieldset>
+
+            <div class="control-group">
+                <label class="control-label">借款额度</label>
+                <div class="controls">
+                    <input type="text"  style="color: black;" name="credit_limit" value="">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">第一期本金及利息</label>
+                <div class="controls">
+                    <input type="text" name="firstdate_pay" style="color: black;"   value="">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">押金</label>
+                <div class="controls">
+                    <input type="text"  style="color: black;"  name="deposit" value="">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">公司管理费</label>
+                <div class="controls">
+                    <input type="text"  style="color: black;" name="manage_cost"  value="">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">代收中介费</label>
+                <div class="controls">
+                    <input type="text" style="color: black;"  name="intermediary_fee" value="">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">共计扣除</label>
+                <div class="controls">
+                    <input type="text" style="color: black;"  name="total_deduction" value="">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">实际放款</label>
+                <div class="controls">
+                    <input type="text" style="color: black;"  name="actual_loan" value="">
+                </div>
+            </div>
+            <!--还款类型-->
+            <div class="control-group">
+                <label class="control-label">还款类型</label>
+                <div class="controls">
+                    <select name="fangkuantype" id="type" onchange="tt()" required>
+                        <option value="">选择还款种类</option>
+                        <option value="1" <eq name="info['fangkuantype']" value="1">"</eq>>按期</option>
+                        <option value="2" <eq name="info['fangkuantype']" value="2">"</eq>>按天</option>
+                    </select>
+                </div>
+            </div>
+            <!--按期-->
+            <div id="week">
+                <div>按期:</div>
+                <div class="control-group">
+                    <label class="control-label">期数</label>
+                    <div class="controls">
+                        <input type="text" style="color: black;"  name="w_periods" value="">周
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">利息</label>
+                    <div class="controls">
+                        <input type="text" style="color: black;"  name="w_interest" value="">周/万
+                    </div>
+                </div>
+            </div>
+            <!--按天-->
+            <div id="day">
+                <div>按天:</div>
+                <div class="control-group">
+                    <label class="control-label">天数</label>
+                    <div class="controls">
+                        <input type="text" style="color: black;"  name="periods" value="">天
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">利息</label>
+                    <div class="controls">
+                        <input type="text" style="color: black;"  name=" " value="">天/万
+                    </div>
+                </div>
+            </div>
+
+
+            <hr>
+            <div class="control-group">
+                <label class="control-label">客户姓名</label>
+                <div class="controls">
+                    <input type="text" style="color: black;"  name="customername" value="">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">客户手机</label>
+                <div class="controls">
+                    <input type="text" style="color: black;"  name="phone" value="">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">银行卡号</label>
+                <div class="controls">
+                    <input type="text" style="color: black;"  name="card_number" value="">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">开户行</label>
+                <div class="controls">
+                    <input type="text" style="color: black;" name="opening_bank" value="">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">打款金额</label>
+                <div class="controls">
+                    <input type="text" style="color: black;"  name="paid_money" value="">元
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">确认人</label>
+                <div class="controls">
+                    <input type="text" style="color: black;"  name="identify_person" value="">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">时间</label>
+                <div class="controls">
+                    <input type="text" style="color: black;"  name="date" value="">
+                </div>
+            </div>
+
+        </fieldset>
+        <div class="form-actions">
+            <input type="hidden" name="id" value="{$info.id}" />
+            <input type="hidden"  value="{$info.orderid}" />
+            <button type="submit" class="btn btn-primary js-ajax-submit">{:L('SAVE')}</button>
+            <a class="btn" href="javascript:history.back(-1);">{:L('BACK')}</a>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    function tt() {
+        var type= document.getElementById("type");
+        for(i=0;i<type.length;i++){
+            console.log(type[i].selected);
+            if(type[i].selected == true){
+                var type1=type[i].value;
+                if(type1 == 1){
+                    document.getElementById("week").style.display="block";
+                }else{
+                    document.getElementById("week").style.display="none";
+
+                }
+                if(type1 == 2){
+                    document.getElementById("day").style.display="block";
+                }else{
+                    document.getElementById("day").style.display="none";
+                }
+            }
+        }
+
+    }
+
+</script>
+</body>
+</html>

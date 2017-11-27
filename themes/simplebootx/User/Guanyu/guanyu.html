@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>宁波白鹭林集团</title>
+    <link rel="stylesheet" type="text/css" href="__TMPL__Public/assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="__TMPL__Public/assets/css/commen.css">
+    <link rel="stylesheet" type="text/css" href="__TMPL__Public/assets/css/index.css">
+    <link rel="stylesheet" type="text/css" href="__TMPL__Public/assets/css/guanyu.css">
+</head>
+<body>
+<!--头部-->
+<tc_include file="Public:nav"/>
+<!--中间内容-->
+<div class="body">
+    <div class="public-container">
+        <div class="breadcrumb">
+            <a href="">首页 > 关于我们</a>
+        </div>
+        <img class= "img" src="__TMPL__Public/assets/image/guanyu/guanyu.png">
+        <div class="text">
+            <div id="info" class="info">
+                <div class="div" onmousemove="changecolor(this)" onmouseleave="back(this)"><span class="span" style="padding-bottom: 24px;">公司介绍</span></div>
+                <div class="div" onmousemove="changecolor(this)" onmouseleave="back(this)"><span class="span" style="padding-bottom: 24px;">组织架构</span></div>
+                <div class="div" onmousemove="changecolor(this)" onmouseleave="back(this)"><span class="span" style="padding-bottom: 24px;">发展历程</span></div>
+                <div class="div" onmousemove="changecolor(this)" onmouseleave="back(this)"><span class="span" style="padding-bottom: 24px;">员工信息</span></div>
+                <div class="xuanxiang ">
+                    <div class="shang">
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;宁波白鹭控股集团有限公司，是一家集车险分期、汽车金融、互联网科技于一体的综合性集团公司。</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;集团公司注册成立于2014年7月,注册资金1亿元。旗下子公司分别为:宁波力拓信息科技有限公司,运作移动端车险</p>
+                        <p>分期软件-保呗分期APP;宁波众拓汽车服务有限公司,专业的汽车金融服务公司;宁波白鹭林有限公司,专注于互联网信</p>
+                        <p>息科技领域。</p>
+                    </div>
+                    <div class="xia">
+                        <ul>
+                            <li>法人机构全称及简称:      宁波白鹭控股集团有限公司</li>
+                            <li>法人机构注册资本:       人民币1亿元</li>
+                            <li>法人机构办公地点:        浙江省宁波市高新区研发园C区12幢15楼</li>
+                            <li>法人机构成立时间:         2014年07月14日</li>
+                            <li>法定代表人:        徐向武</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="xuanxiang yincang">
+                    <img style="margin: 0 auto;" src="__TMPL__Public/assets/image/guanyu/zuzhi.png">
+                </div>
+                <div class="xuanxiang yincang">
+                    <img src="__TMPL__Public/assets/image/guanyu/fazhan.png">
+                </div>
+                <div class="xuanxiang yincang">
+                    <p class="xinxi">员工信息</p>
+                    <div class="num">
+                        <p class="renshu"><span style="color: #ffffff;">员工人数:&nbsp;&nbsp;53人</span></p>
+                    </div>
+                    <div class="font">
+                        <div class="zuo">
+                            <div class="renshu"><span>员工人数分布</span></div>
+                            <div class="div1">
+                                <img style="padding-left: 10px; padding-top: 20px;padding-bottom: 50px" src="__TMPL__Public/assets/image/guanyu/pic1.png">
+                                <p>截止2017年09月04日，团队人数已达53人，其中 </p>
+                                <p>风险控制团队5人,占比11%;IT团队15人,占比33%;</p>
+                                <p style="padding-bottom: 50px">其他人员33人,占比56%</p>
+                            </div>
+                        </div>
+                        <div class="zhong">
+                            <div class="nianling"><span>员工年龄结构</span></div>
+                            <div class="div1">
+                                <img style="padding-left: 10px; padding-top: 20px;padding-bottom: 50px" src="__TMPL__Public/assets/image/guanyu/pic2.png">
+                                <p>20-25岁11人,占比22%;26-30岁25人,占比47%; </p>
+                                <p style="padding-bottom: 70px">31-50岁17人,占比31%</p>
+                            </div>
+                        </div>
+                        <div class="you">
+                            <div class="xueli"><span>员工学历结构</span></div>
+                            <div class="div1">
+                                <img style="padding-left: 10px; padding-top: 20px;padding-bottom: 50px" src="__TMPL__Public/assets/image/guanyu/pic3.png">
+                                <p>研究生及以上4人,占比8%;本科36人,占比68%;</p>
+                                <p style="padding-bottom: 70px">本科及以下13人,占比24%</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
+<tc_include file="Public:footer"/>
+<script type="text/javascript">
+    function changecolor(t){
+        t.style.color="#ff7300";
+        t.firstElementChild.style.borderBottom="3px solid #ff7300";
+    }
+
+    function back(t){
+        t.style.color="#999999";
+        t.firstElementChild.style.borderBottom="none";
+    }
+
+
+    window.onload=function(){
+                var info=document.getElementById('info');
+                var div=info.getElementsByClassName("div");
+                var xuanxiang=info.getElementsByClassName('xuanxiang');
+
+                for(var i=0;i<div.length;i++){  //循环历遍onclick事件
+                       div[i].index=i; //input[0].index=0 index是自定义属性
+                       div[i].onclick=function(){
+                               for(var i=0;i<div.length;i++){  //循环历遍去掉button样式和把div隐藏+
+                                         xuanxiang[i].style.display='none';
+                                  };
+                              this.className='div';  //当前按钮添加样式
+                           xuanxiang[this.index].style.display='block';  //div显示 this.index是当前div 即div[0]之类的
+                           console.log(this.index);
+                           };
+                     };
+               };
+
+//    window.onload = function(){
+//        var info = document.getElementById('info');
+//        var div= info.getElementByClassName('div');
+//        var xuanxiang = info.getElementByClassName('xuanxiang');
+//        for(var i=0;i<div.length;i++){
+//            div[i].index=i;
+//            div[i].onclick=function(){
+//                for(var i =0;i<div.length;i++){
+//                    xuanxiang[i].style.diaplay='none';
+//                };
+//                this.className='div';
+//                xuanxiang[this.index].style.display='black';
+//                console.log(this.index);
+//            }
+//        }
+//    }
+</script>
+</body>
+</html>

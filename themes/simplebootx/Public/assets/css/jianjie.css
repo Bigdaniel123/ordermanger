@@ -1,0 +1,18 @@
+.body{
+    background-color:#f7f7f7;
+}
+.body .public-container {
+    background-color: #ffffff;
+    height:500px;
+}
+.body .public-container .jianjie{
+    height:400px;
+    padding-top: 200px;
+   text-align: center;
+    background-color: #94d8cf;
+}
+.body .public-container .jianjie p{
+    font-family: HYQiHeiX1-45W;
+    font-size: 24px;
+    color: #323232;
+}

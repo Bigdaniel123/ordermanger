@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传文件</title>
+</head>
+<body>
+<form id="upload" method='post' action="{:U('Fangkuan/upload')}" enctype="multipart/form-data">
+    文件名：
+    <input type="text" name="filename" />
+
+    <input name="image" type="file" />
+    <br/>
+    <input type="submit" value="提交" >
+</form>
+</body>
+</html>
