@@ -201,6 +201,7 @@
 			}
 			$order = M("fangkuan_history")->alias('f')->field('f.every_pay as f_pay,f.*,o.* ,f.id as f_id')->join(' __FANGKUAN__ as o on f.oid= o.id', 'right')->where(array('o.id' => $id))->select();
 			$this->assign('lists', $order);
+			$this->assign('data', $data);
 			$this->display();
 		}
 
