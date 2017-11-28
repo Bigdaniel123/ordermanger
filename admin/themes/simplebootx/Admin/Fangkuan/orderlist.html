@@ -29,8 +29,7 @@
                     <th width="100px">期还款金额</th>
                 </eq>
                 <th width="100px">确认人</th>
-                <th width="100px">放款开始时间</th>
-                <th >{:L('ACTIONS')}</th>
+                <th >{:L('ACTIONS')}/还款时间</th>
             </tr>
             </thead>
             <tbody>
@@ -49,10 +48,13 @@
                     </eq>
                     <td style="border-bottom: 1px solid #ddd">{$vo.f_pay}</td>
                     <td style="border-bottom: 1px solid #ddd">{$vo.identify_person}</td>
-                    <td style="border-bottom: 1px solid #ddd">{$vo.addtime}</td>
                     <td>
                         <!--<a href="javascript:;" onclick="showorder('{:U('Fangkuan/huankuan',array('oid'=>$vo['oid']))}')" class="layui-btn layui-btn-primary" >查看此人分期 |</a>-->
-                        <a href="{:U('Fangkuan/huankuan',array('id'=>$vo['f_id']))}" >还款</a>
+                        <empty name="vo.huankuan_time">
+                        <a href="{:U('Fangkuan/huankuan',array('id'=>$vo['f_id']))}" class="js-ajax-dialog-btn" data-msg="确定还款吗？">还款</a>
+                        <else />
+                        {$vo.huankuan_time|date="Y-m-d H:i:s",###}
+                        </empty>
                     </td>
                 </tr>
             </foreach>
