@@ -1,144 +1,274 @@
 <admintpl file="header" />
+
 </head>
 <body>
+<script type="text/html" id="photos-item-wrapper">
+    <li id="savedimage{id}">
+        <input id="photo-{id}" type="hidden" name="imgs[]" value="{filepath}">
+        <input id="photo-{id}-name" type="text" disabled="disabled" name="imgs[]" value="{name}" style="width: 160px;" title="图片名称">
+        <img id="photo-{id}-preview" src="{url}" style="height:36px;width: 36px;" onclick="parent.image_preview_dialog(this.src);">
+        <a href="javascript:upload_one_image('图片上传','#photo-{id}');">替换</a>
+        <a href="javascript:(function(){$('#savedimage{id}').remove();})();">移除</a>
+    </li>
+</script>
+
+
 <div class="wrap">
     <ul class="nav nav-tabs">
-        <li ><a href="{:U('Fangkuan/index')}">列表</a></li>
-        <li ><a href="{:U('Fangkuan/add')}">添加</a></li>
-        <li class="active"><a href="{:U('Fangkuan/#')}">编辑</a></li>
+        <li><a href="{:U('index')}">全部列表</a></li>
+        <li class="active"><a>添加放款</a></li>
     </ul>
-    <form class="form-horizontal js-ajax-form" method="post" action="{:U('Fangkuan/edit')}">
+    <form method="post" class="form-horizontal js-ajax-form"  action="{:U('Fangkuan/edit')}">
         <fieldset>
+            <!--还款类型-->
+            
+            
             <div class="control-group">
-                <label class="control-label" for="input-user_customername"><span class="form-required">*</span>客户姓名</label>
+                <label class="control-label">还款类型</label>
                 <div class="controls">
-                    <input type="hidden"  name="id" value="{$fangkuan['id']}" >
-                    <input type="text" id="input-user_customername" name="customername" value="{$fangkuan['customername']}" required>
+                    <select name="fangkuantype" id="type" required>
+                        <option value="">选择还款种类</option>
+                        <option value="1" <eq name="fangkuan['type']" value="1">selected="selected"</eq>>按期</option>
+                        <option value="2" <eq name="fangkuan['type']" value="2">selected="selected"</eq>>按天</option>
+                    </select>
                 </div>
             </div>
-            <div class="control-group">
-                <label class="control-label" for="input-user_phone"><span class="form-required">*</span>客户手机</label>
+            <!--按期-->
+
+
+
+            <div class="control-group" id="weekfotper" style="display: none">
+                <label class="control-label">每期间隔</label>
                 <div class="controls">
-                    <input type="text" id="input-user_phone" name="card_number" value="{$fangkuan['phone']}" required>
+                    <select name="time_int"  >
+                        <option value="">选择还款种类</option>
+                        <option value="7" <eq name="fangkuan['time_int']" value="7">selected="selected"</eq>>7天</option>
+                        <option value="10" <eq name="fangkuan['time_int']" value="10">selected="selected"</eq>>10天</option>
+                        <option value="30" <eq name="fangkuan['time_int']" value="30">selected="selected"</eq>>30天</option>
+                    </select>
                 </div>
             </div>
-            <div class="control-group">
-                <label class="control-label" for="input-user_card_number"><span class="form-required">*</span>银行卡号</label>
-                <div class="controls">
-                    <input type="text" id="input-user_card_number" name="card_number" value="{$fangkuan['card_number']}" required>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="input-user_opening_bank"><span class="form-required">*</span>开户行</label>
-                <div class="controls">
-                    <input type="text" id="input-user_opening_bank" name="opening_bank" value="{$fangkuan['opening_bank']}" required="required">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="input-user_paid_money">打款金额</label>
-                <div class="controls">
-                    <input type="text" id="input-user_paid_money" name="paid_money" value="{$fangkuan['paid_money']}" >
-                </div>
-            </div>
+
+            <div class="week" style="display: none">
                 <div class="control-group">
-                    <notempty name="fangkuan['w_periods']">
-                        <label class="control-label" for="input-user_w_periods">期数</label>
-                        <div class="controls">
-                            <input type="text" id="input-user_w_periods" name="w_periods" value="{$fangkuan['w_periods']}" >
-                        </div>
-                    </notempty>
-
+                    <label class="control-label" id="periods">期数</label>
+                    <div class="controls">
+                        <input type="text" style="color: black;"  name="periods" value="{$fangkuan.periods}"><labe id="periods_input">期</labe>
+                    </div>
                 </div>
+
                 <div class="control-group">
-                    <notempty name="fangkuan['w_interest']">
-                        <label class="control-label" for="input-user_w_interest">利息</label>
-                        <div class="controls">
-                            <input type="text" id="input-user_w_interest" name="w_interest" value="{$fangkuan['w_interest']}" >
-                        </div>
+                    <label class="control-label" >利息</label>
+                    <div class="controls">
+                        <input type="text" style="color: black;"  name="interest" value="{$fangkuan.interest}"><labe id="interest_input">期/万</labe>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+            <div class="control-group">
+                <label class="control-label">借款额度</label>
+                <div class="controls">
+                    <input type="text"  style="color: black;" name="credit_limit" value="{$fangkuan.credit_limit}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">第一期本金及利息</label>
+                <div class="controls">
+                    <input type="text" name="firstdate_pay" style="color: black;"   value="{$fangkuan.firstdate_pay}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">押金</label>
+                <div class="controls">
+                    <input type="text"  style="color: black;"  name="deposit" value="{$fangkuan.deposit}">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">公司管理费</label>
+                <div class="controls">
+                    <input type="text"  style="color: black;" name="manage_cost"  value="{$fangkuan.manage_cost}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">代收中介费</label>
+                <div class="controls">
+                    <input type="text" style="color: black;"  name="intermediary_fee" value="{$fangkuan.intermediary_fee}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">共计扣除</label>
+                <div class="controls">
+                    <input type="text" style="color: black;"  name="total_deduction" value="{$fangkuan.total_deduction}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">实际放款</label>
+                <div class="controls">
+                    <input type="text" style="color: black;"  name="actual_loan" value="{$fangkuan.actual_loan}">
+                </div>
+            </div>
+
+
+            <hr>
+            <div class="control-group">
+                <label class="control-label">客户姓名</label>
+                <div class="controls">
+                    <input type="text" style="color: black;"  name="customername" value="{$fangkuan.customername}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">客户手机</label>
+                <div class="controls">
+                    <input type="text" style="color: black;"  name="phone" value="{$fangkuan.phone}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">银行卡号</label>
+                <div class="controls">
+                    <input type="text" style="color: black;"  name="card_number" value="{$fangkuan.card_number}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">开户行</label>
+                <div class="controls">
+                    <input type="text" style="color: black;" name="opening_bank" value="{$fangkuan.opening_bank}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">打款金额</label>
+                <div class="controls">
+                    <input type="text" style="color: black;"  name="paid_money" value="{$fangkuan.paid_money}">元
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">时间</label>
+                <div class="controls">
+                    <input type="text" name="date" class="js-date" value="{$fangkuan.date}"  autocomplete="off">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">图片展示</label>
+                <div class="controls">
+                    <ul id="photos" class="pic-list unstyled">
+                    <notempty name="fangkuan['imgs']">
+                        <foreach name="fangkuan['imgs']" item="vo">
+                            <p id="savedimage{$key}">
+                                <input id="photo-{$key}" type="hidden" name="imgs[]" value="{$vo}">
+                                <input id="photo-{$key}-name" type="text" name="photos_alt[]" value="{$vo}" style="width: 200px;" title="图片名称">
+                                <img id="photo-{$key}-preview" src="{$vo}" style="height:36px;width: 36px;" onclick="parent.image_preview_dialog(this.src);">
+                                <a href="javascript:upload_one_image('图片上传','#photo-{$key}');">替换</a>
+                                <a href="javascript:(function(){ $('#savedimage{$key}').remove();})();">移除</a>
+                            </p>
+                        </foreach>
                     </notempty>
-
+                    </ul>
+                    <a href="javascript:upload_multi_image('图片上传','#photos','photos-item-wrapper');" class="btn btn-small">选择图片</a>
                 </div>
-
-
-            <div class="control-group">
-                <notempty name="fangkuan['periods']">
-                    <label class="control-label" for="input-user_periods">天数</label>
-                    <div class="controls">
-                        <input type="text" id="input-user_periods" name="periods" value="{$fangkuan['periods']}" >
-                    </div>
-                </notempty>
-
             </div>
 
-            <div class="control-group">
-                <notempty name="fangkuan['interest']">
-                    <label class="control-label" for="input-user_interest">利息</label>
-                    <div class="controls">
-                        <input type="text" id="input-user_interest" name="interest" value="{$fangkuan['interest']}" >
-                    </div>
-                </notempty>
-
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="input-user_identify_person">确认人</label>
-                <div class="controls">
-                    <input type="text" id="input-user_identify_person" name="identify_person" value="{$fangkuan['identify_person']}" >
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="input-user_date">确认时间</label>
-                <div class="controls">
-                    <input type="text" id="input-user_date" name="date" value="{$fangkuan['date']}" >
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="input-user_credit_limit">借款额度</label>
-                <div class="controls">
-                    <input type="text" id="input-user_credit_limit" name="credit_limit" value="{$fangkuan['credit_limit']}" >
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="input-user_firstdate_pay">第一期本金及利息</label>
-                <div class="controls">
-                    <input type="text" id="input-user_firstdate_pay" name="firstdate_pay" value="{$fangkuan['firstdate_pay']}" >
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="input-user_deposit">押金</label>
-                <div class="controls">
-                    <input type="text" id="input-user_deposit" name="deposit" value="{$fangkuan['deposit']}" >
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="input-user_manage_cost">公司管理费</label>
-                <div class="controls">
-                    <input type="text" id="input-user_manage_cost" name="manage_cost" value="{$fangkuan['manage_cost']}" >
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="input-user_intermediary_fee">代收中介费</label>
-                <div class="controls">
-                    <input type="text" id="input-user_intermediary_fee" name="intermediary_fee" value="{$fangkuan['intermediary_fee']}" >
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="input-user_total_deduction">共计总扣除</label>
-                <div class="controls">
-                    <input type="text" id="input-user_total_deduction" name="total_deduction" value="{$fangkuan['total_deduction']}" >
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="input-user_actual_loan">实际放款</label>
-                <div class="controls">
-                    <input type="text" id="input-user_actual_loan" name="actual_loan" value="{$fangkuan['actual_loan']}" >
-                </div>
-            </div>
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary js-ajax-submit">{:L('SAVE')}</button>
-            </div>
+            <input type="hidden" name="id" value="{$fangkuan.id}" />
         </fieldset>
+        <div class="form-actions">
+            <input type="hidden"  value="{$info.orderid}" />
+            <button type="submit" class="btn btn-primary js-ajax-submit">{:L('SAVE')}</button>
+            <a class="btn" href="javascript:history.back(-1);">{:L('BACK')}</a>
+        </div>
     </form>
 </div>
+<script type="text/javascript">
 
+//初始化时候判断是否显示
+function selectType() {
+    var type = $("#type").val();
+    var week = $(".week");
+    var weekfotper = $("#weekfotper");
+    //只有对期才有
+    weekfotper.hide();
+    week.hide();
+
+    //期数
+    var periods_label = $("#periods");
+    var periods_input = $("#periods_input");
+    //利息
+    var interest_input = $("#interest_input");
+
+
+    //按期
+    if (type == 1) {
+        //期数
+        week.show();
+        weekfotper.show();
+        periods_label.text("期数");
+        periods_input.text("期");
+        //利息
+        interest_input.text("期/万");
+
+        //按天
+    } else if (type == 2) {
+        //期数
+        week.show();
+        periods_label.text("天数");
+        periods_input.text("天");
+        //利息
+        interest_input.text("天/万");
+
+    } else {
+        layer.alert("参数错误");
+    }
+}
+
+$(function(){
+    selectType()
+
+});
+
+
+
+    //计算第一期本金利息金额
+    $("input[name=firstdate_pay]").focus(function(){
+        //借款额度
+        var credit_limit = $("input[name=credit_limit]").val();
+        //利息
+        var interest = $("input[name=interest]").val();
+        //分期期数
+        var periods = $("input[name=periods]").val();
+
+        var  money = (credit_limit/periods)+(credit_limit/10000)*interest;
+
+        $(this).val(money);
+    });
+
+    //计算第一期本金利息金额
+    $("input[name=actual_loan]").focus(function(){
+        //借款额度
+        var credit_limit = $("input[name=credit_limit]").val();
+        //扣除总金额
+        var total_deduction = $("input[name=total_deduction]").val();
+        //分期期数
+
+
+        $(this).val(credit_limit -total_deduction );
+    });
+
+    //计算实际发送金额
+    $("input[name=paid_money]").focus(function(){
+        var actual_loan = $("input[name=actual_loan]").val();
+        $(this).val(actual_loan);
+    });
+
+    $("#type").change(function(){
+
+
+        selectType();
+    });
+
+
+
+
+</script>
+<script src="__PUBLIC__/js/common.js"></script>
 </body>
 </html>

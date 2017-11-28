@@ -2,14 +2,67 @@
 
 </head>
 <body>
+<script type="text/html" id="photos-item-wrapper">
+    <li id="savedimage{id}">
+        <input id="photo-{id}" type="hidden" name="imgs[]" value="{filepath}">
+        <input id="photo-{id}-name" type="text" disabled="disabled" name="imgs[]" value="{name}" style="width: 160px;" title="图片名称">
+        <img id="photo-{id}-preview" src="{url}" style="height:36px;width: 36px;" onclick="parent.image_preview_dialog(this.src);">
+        <a href="javascript:upload_one_image('图片上传','#photo-{id}');">替换</a>
+        <a href="javascript:(function(){$('#savedimage{id}').remove();})();">移除</a>
+    </li>
+</script>
+
+
 <div class="wrap">
     <ul class="nav nav-tabs">
         <li><a href="{:U('index')}">全部列表</a></li>
-        <li class="active"><a>放款</a></li>
+        <li class="active"><a>添加放款</a></li>
     </ul>
     <form method="post" class="form-horizontal js-ajax-form"  action="{:U('Fangkuan/add')}">
         <fieldset>
+            <!--还款类型-->
+            <div class="control-group">
+                <label class="control-label">还款类型</label>
+                <div class="controls">
+                    <select name="fangkuantype" id="type" required>
+                        <option value="">选择还款种类</option>
+                        <option value="1" <eq name="info['fangkuantype']" value="1">"</eq>>按期</option>
+                        <option value="2" <eq name="info['fangkuantype']" value="2">"</eq>>按天</option>
+                    </select>
+                </div>
+            </div>
+            <!--按期-->
 
+
+            <div class="control-group" id="weekfotper" style="display: none">
+                <label class="control-label">每期间隔</label>
+                <div class="controls">
+                    <select name="time_int"  >
+                        <option value="">选择还款种类</option>
+                        <option value="7" <eq name="info['time_int']" value="7">"</eq>>7天</option>
+                        <option value="10" <eq name="info['time_int']" value="10">"</eq>>10天</option>
+                        <option value="30" <eq name="info['time_int']" value="30">"</eq>>30天</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="week" style="display: none">
+                <div class="control-group">
+                    <label class="control-label" id="periods">期数</label>
+                    <div class="controls">
+                        <input type="text" style="color: black;"  name="periods" value=""><labe id="periods_input">期</labe>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" >利息</label>
+                    <div class="controls">
+                        <input type="text" style="color: black;"  name="interest" value=""><labe id="interest_input">期/万</labe>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
             <div class="control-group">
                 <label class="control-label">借款额度</label>
                 <div class="controls">
@@ -53,49 +106,6 @@
                     <input type="text" style="color: black;"  name="actual_loan" value="">
                 </div>
             </div>
-            <!--还款类型-->
-            <div class="control-group">
-                <label class="control-label">还款类型</label>
-                <div class="controls">
-                    <select name="fangkuantype" id="type" onchange="tt()" required>
-                        <option value="">选择还款种类</option>
-                        <option value="1" <eq name="info['fangkuantype']" value="1">"</eq>>按期</option>
-                        <option value="2" <eq name="info['fangkuantype']" value="2">"</eq>>按天</option>
-                    </select>
-                </div>
-            </div>
-            <!--按期-->
-            <div id="week">
-                <div>按期:</div>
-                <div class="control-group">
-                    <label class="control-label">期数</label>
-                    <div class="controls">
-                        <input type="text" style="color: black;"  name="w_periods" value="">周
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label">利息</label>
-                    <div class="controls">
-                        <input type="text" style="color: black;"  name="w_interest" value="">周/万
-                    </div>
-                </div>
-            </div>
-            <!--按天-->
-            <div id="day">
-                <div>按天:</div>
-                <div class="control-group">
-                    <label class="control-label">天数</label>
-                    <div class="controls">
-                        <input type="text" style="color: black;"  name="periods" value="">天
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label">利息</label>
-                    <div class="controls">
-                        <input type="text" style="color: black;"  name=" " value="">天/万
-                    </div>
-                </div>
-            </div>
 
 
             <hr>
@@ -129,16 +139,18 @@
                     <input type="text" style="color: black;"  name="paid_money" value="">元
                 </div>
             </div>
-            <div class="control-group">
-                <label class="control-label">确认人</label>
-                <div class="controls">
-                    <input type="text" style="color: black;"  name="identify_person" value="">
-                </div>
-            </div>
+
             <div class="control-group">
                 <label class="control-label">时间</label>
                 <div class="controls">
-                    <input type="text" style="color: black;"  name="date" value="">
+                    <input type="text" name="date" class="js-date" value=""  autocomplete="off">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label"> 图片上传</label>
+                <div class="controls">
+                    <ul id="photos" class="pic-list unstyled"></ul>
+                    <a href="javascript:upload_multi_image('图片上传','#photos','photos-item-wrapper');" class="btn btn-small">选择图片</a>
                 </div>
             </div>
 
@@ -152,28 +164,82 @@
     </form>
 </div>
 <script type="text/javascript">
-    function tt() {
-        var type= document.getElementById("type");
-        for(i=0;i<type.length;i++){
-            console.log(type[i].selected);
-            if(type[i].selected == true){
-                var type1=type[i].value;
-                if(type1 == 1){
-                    document.getElementById("week").style.display="block";
-                }else{
-                    document.getElementById("week").style.display="none";
 
-                }
-                if(type1 == 2){
-                    document.getElementById("day").style.display="block";
-                }else{
-                    document.getElementById("day").style.display="none";
-                }
-            }
+
+    //计算第一期本金利息金额
+    $("input[name=firstdate_pay]").focus(function(){
+        //借款额度
+        var credit_limit = $("input[name=credit_limit]").val();
+        //利息
+        var interest = $("input[name=interest]").val();
+        //分期期数
+        var periods = $("input[name=periods]").val();
+
+        var  money = (credit_limit/periods)+(credit_limit/10000)*interest;
+
+        $(this).val(money);
+    });
+
+    //计算第一期本金利息金额
+    $("input[name=actual_loan]").focus(function(){
+        //借款额度
+        var credit_limit = $("input[name=credit_limit]").val();
+        //扣除总金额
+        var total_deduction = $("input[name=total_deduction]").val();
+        //分期期数
+
+
+        $(this).val(credit_limit -total_deduction );
+    });
+
+    //计算实际发送金额
+    $("input[name=paid_money]").focus(function(){
+        var actual_loan = $("input[name=actual_loan]").val();
+        $(this).val(actual_loan);
+    });
+
+    $("#type").change(function(){
+        var type=$(this).val();
+        var week = $(".week");
+        var weekfotper = $("#weekfotper");
+        //只有对期才有
+        weekfotper.hide();
+        week.hide();
+
+        //期数
+        var  periods_label=$("#periods");
+        var  periods_input=$("#periods_input");
+        //利息
+        var  interest_input=$("#interest_input");
+
+
+        //按期
+        if(type==1){
+            //期数
+            week.show();
+            weekfotper.show();
+            periods_label.text("期数");
+            periods_input.text("期");
+            //利息
+            interest_input.text("期/万");
+
+        //按天
+        }else if(type==2) {
+            //期数
+            week.show();
+            periods_label.text("天数");
+            periods_input.text("天");
+            //利息
+            interest_input.text("天/万");
+
+        }else{
+            layer.alert("参数错误");
         }
+    });
 
-    }
+
 
 </script>
+<script src="__PUBLIC__/js/common.js"></script>
 </body>
 </html>

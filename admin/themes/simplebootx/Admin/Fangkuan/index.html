@@ -7,7 +7,7 @@
 
     <ul class="nav nav-tabs">
         <li class="active" ><a href="{:U('Fangkuan/index')}">全部列表</a></li>
-        <li ><a href="{:U('Fangkuan/add')}">放款</a></li>
+        <li ><a href="{:U('Fangkuan/add')}">添加放款</a></li>
     </ul>
     <form class="well form-search" method="post" action="{:U('Fangkuan/index')}">
         姓名<input type="text" name="name" style="width: 200px;" value="{$formget.name|default=''}" >
@@ -27,11 +27,8 @@
                 <th width="100px">银行卡号 </th>
                 <th width="100px">开户行</th>
                 <th width="100px">打款金额</th>
-                <th width="100px">期数</th>
-                <th width="50px">利息(周)</th>
-                <th width="100px">天数</th>
-                <th width="50px">利息(天)</th>
-                <th width="100px">确认人</th>
+                <th width="100px">天(期)数</th>
+                <th width="50px">利息</th>
                 <th width="100px">确认时间</th>
                 <th width="100px">借款额度</th>
                 <th width="200px">第一期本金及利息</th>
@@ -52,11 +49,8 @@
                     <td>{$vo.card_number}</td>
                     <td>{$vo.opening_bank}</td>
                     <td>{$vo.paid_money}</td>
-                    <td>{$vo.w_periods}</td>
-                    <td>{$vo.w_interest}</td>
-                    <td>{$vo.periods}</td>
+                    <td>{$vo.periods}{$vo.type|changetype=###,$vo['time_int']}</td>
                     <td>{$vo.interest}</td>
-                    <td>{$vo.identify_person}</td>
                     <td>{$vo.date}</td>
 
                     <td>{$vo.credit_limit}</td>
@@ -67,10 +61,35 @@
                     <td>{$vo.total_deduction}</td>
                     <td>{$vo.actual_loan}</td>
                     <td>
-                        <a href="{:U('Fangkuan/edit',array('id'=>$vo['id']))}">{:L('EDIT')}</a>  |
-                        <a href="{:U('Fangkuan/delete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:L('DELETE')}</a>
-                        <a href="{:U('Fangkuan/order',array('id'=>$vo['id']))}" class="js-ajax-delete">生成还款计划&#12288</a>
-                        <a href="{:U('Fangkuan/orderlist',array('id'=>$vo['id']))}" class="js-ajax-delete">查看此人还款计划&#12288</a>
+
+                        <div class="dropdown">
+                            <button type="button" class="btn dropdown-toggle" id="dropdownMenu1"
+                                    data-toggle="dropdown">
+                                操作
+                                <span class="caret"></span>
+                            </button>
+
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+
+                                <li role="presentation">
+                                    <a href="{:U('Fangkuan/edit',array('id'=>$vo['id']))}">{:L('EDIT')}</a>  |
+                                </li>
+
+                                <li role="presentation">
+                                    <a href="{:U('Fangkuan/delete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:L('DELETE')}</a>
+                                </li>
+
+                                <li role="presentation">
+                                    <a href="{:U('Fangkuan/order',array('id'=>$vo['id']))}" class="js-ajax-delete">生成还款计划&#12288</a>
+                                </li>
+
+                                <li role="presentation">
+                                    <a href="{:U('Fangkuan/orderlist',array('id'=>$vo['id']))}" class="js-ajax-delete">查看此人还款计划&#12288</a>
+                                </li>
+
+
+                            </ul>
+                        </div>
 
 
                 </tr>

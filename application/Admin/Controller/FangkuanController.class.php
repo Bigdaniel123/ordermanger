@@ -2,7 +2,6 @@
 
 	namespace Admin\Controller;
 	use Common\Controller\AdminbaseController;
-	use PHPExcel;
 
 	class FangkuanController extends AdminbaseController{
 		protected $fangkuan_model;
@@ -39,15 +38,15 @@
 		}
 
 		public function add(){
+			//当前添加的用户id
 			$uid = get_current_admin_id();
 			$data = array();
-			if($_POST){
+			if(IS_POST){
 				$data['uid'] = $uid;
 				$data['type'] = I('fangkuantype');
 				$type = I('fangkuantype');
 				$data['customername'] = I('customername');
 				$data['phone'] = I('phone');
-				$data['identify_person'] = I('identify_person');
 				$data['opening_bank'] = I('opening_bank');
 				$data['paid_money'] = I('paid_money');
 				$data['credit_limit'] = I('credit_limit');
@@ -61,16 +60,22 @@
 				$data['firstdate_pay'] = I('firstdate_pay');
 				$data['interest'] = I('interest');
 				$data['periods'] = I('periods');
-				$data['w_interest'] = I('w_interest');
-				$data['w_periods'] = I('w_periods');
+				$data['imgs'] = I('imgs');
+				$data['time_int'] = I('time_int');
+				//添加imgs_path
+				foreach($data['imgs'] as $k => $v){
+					$data['imgs'][ $k ] = "data/upload/" . $v;
+				}
+				//转json;
+				$data['imgs'] = json_encode($data['imgs']);
+				if(empty($type)){
+					$this->error('分期时间类型为空');
+				}
 				if(empty($data['customername'])){
 					$this->error('请填写客户姓名');
 				}
 				if(empty($data['phone'])){
 					$this->error('请填写手机号');
-				}
-				if(empty($data['identify_person'])){
-					$this->error('请填写确认人');
 				}
 				if(empty($data['opening_bank'])){
 					$this->error('请填写开户行');
@@ -105,19 +110,26 @@
 				if(empty($data['firstdate_pay'])){
 					$this->error('请填写第一期本金及利息');
 				}
+
+				if(empty($data['interest'])){
+					$this->error('请填写利息');
+				}
+
+				if(empty($data['periods'])){
+					$this->error('请填写期数');
+				}
+
 				if( ! empty($type)){
+					//按期
 					if($type == 1){
-						if(empty($data['w_interest']) && empty($data['w_periods'])){
-							$this->error('请填写利息或者期数');
+						if(empty($data['time_int'])){
+							$this->error('请填写每期间隔');
 						}
 					}
-					if($type == 2){
-						if(empty($data['interest']) && empty($data['periods'])){
-							$this->error('请填写利息或者天数');
-						}
-					}
+
 				}
 				$result = M('fangkuan')->add($data);
+
 				if($result){
 					$this->success('添加成功', U("Fangkuan/index"));
 				}
@@ -141,15 +153,24 @@
 			if(IS_POST){
 				$data = I('post.');
 				$data['id'] = $id;
+				//判断图片是否更换过
+				foreach($data['imgs'] as $k =>$v){
+					$data['imgs'][$k]=strpos($v, 'data/upload')===false?'data/upload/'.$v:$v;
+				}
+				$data['imgs']=json_encode($data['imgs']);
+
+
 				/*验证参数*/
 				if($this->fangkuan_model->save($data) !== false){
-					$this->success("更新成功", U("Fangkuan/index"));
+					$this->success("更新成功");
 				}
 				else{
 					$this->error('更新失败');
 				}
 			}
 			$fangkuan = $this->fangkuan_model->where(array('id' => $id))->find();
+			//decode 图片
+			$fangkuan['imgs']=json_decode($fangkuan['imgs'],true);
 			$this->assign('fangkuan', $fangkuan);
 			$this->display();
 
