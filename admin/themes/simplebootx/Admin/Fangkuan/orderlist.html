@@ -3,8 +3,8 @@
 <body>
 <div class="wrap js-check-wrap">
     <ul class="nav nav-tabs">
-        <li ><a href="{:U('Fangkuan/index')}">全部分期列表</a></li>
-        <!--<li class="active" ><a href="{:U('orderhistory')}">分期列表</a></li>-->
+        <li><a href="{:U('Fangkuan/index')}">全部分期列表</a></li>
+        <li class="active"><a>分期列表</a></li>
     </ul>
     <!--<form class="well form-search" method="post" action="{:U('Fangkuan/showorder')}">-->
         <!--姓名：-->
@@ -17,7 +17,7 @@
             <tr>
                 <th width="50"></label>ID</th>
                 <th>客户姓名</th>
-                <th>创建时间</th>
+                <th>还款时间</th>
                 <th>客户手机</th>
                 <th>第几期</th>
                 <th>借款金额</th>
@@ -29,8 +29,8 @@
                     <th width="100px">期还款金额</th>
                 </eq>
                 <th width="100px">确认人</th>
-                <th width="100px">放款开始时间</th>
-                <th >{:L('ACTIONS')}</th>
+                <th>类型</th>
+                <th >{:L('ACTIONS')}/还款时间</th>
             </tr>
             </thead>
             <tbody>
@@ -38,21 +38,22 @@
                 <tr>
                     <td>{$vo.f_id}</td>
                     <td>{$vo.customername}</td>
-                    <td>{$vo.create_time|date="Y-m-d H:i:s",###}</td>
+                    <td>{$vo.payment_time|date="Y-m-d",###}</td>
                     <td>{$vo.phone}</td>
                     <td>{$vo.qichu}</td>
                     <td>{$vo.paid_money}</td>
-                    <eq name="data['type']" value="1">
-                        <td style="border-bottom: 1px solid #ddd">{$vo.periods}</td>
-                        <else />
-                        <td style="border-bottom: 1px solid #ddd">{$vo.w_periods}</td>
-                    </eq>
-                    <td style="border-bottom: 1px solid #ddd">{$vo.f_pay}</td>
-                    <td style="border-bottom: 1px solid #ddd">{$vo.identify_person}</td>
-                    <td style="border-bottom: 1px solid #ddd">{$vo.addtime}</td>
+                    <td>{$vo.periods}</td>
+
+                    <td>{$vo.f_pay}</td>
+                    <td>{$vo.identify_person}</td>
+                    <td><eq name="vo.type" value="1">天<else/>期</eq></td>
                     <td>
                         <!--<a href="javascript:;" onclick="showorder('{:U('Fangkuan/huankuan',array('oid'=>$vo['oid']))}')" class="layui-btn layui-btn-primary" >查看此人分期 |</a>-->
-                        <a href="{:U('Fangkuan/huankuan',array('id'=>$vo['f_id']))}" >还款</a>
+                        <empty name="vo.huankuan_time">
+                        <a href="{:U('Fangkuan/huankuan',array('id'=>$vo['f_id']))}" class="js-ajax-dialog-btn" data-msg="确定还款吗？">还款</a>
+                        <else />
+                        {$vo.huankuan_time|date="Y-m-d H:i:s",###}
+                        </empty>
                     </td>
                 </tr>
             </foreach>
@@ -63,40 +64,5 @@
     <div class="pagination">{$page}</div>
 </div>
 <script src="__PUBLIC__/js/common.js"></script>
-<script>
-    //    function showDetails(id){
-    //        layer.load();
-    //        setTimeout(function(){
-    //            layer.closeAll('loading');
-    //        }, 3000);
-    //
-    //        var url="{:U('haier/reqManualRepayment')}",
-    //            data={};
-    //
-    //        data.id=id;
-    //        $.post(url,data,function(result){
-    //
-    //            if (result.code==200){
-    //                layer.open({
-    //                    type: 2,
-    //                    area: ['360px', '630px'],
-    //                    skin: 'layui-layer-rim', //加上边框
-    //                    content: [result.url]
-    //                });
-    //            }else{
-    //                layer.msg("获取链接地址失败");
-    //            }
-    //        },'JSON');
-    //    }
-
-    function showorder(url) {
-        layer.open({
-            type: 2,
-            area: ['1700px', '800px'],
-            skin: 'layui-layer-rim', //加上边框
-            content: [url]
-        });
-    }
-</script>
 </body>
 </html>
