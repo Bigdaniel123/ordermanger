@@ -211,6 +211,9 @@
 			$this->display();
 		}
 
+		/**
+		 * 还款列表
+		 */
 		public function huankuan(){
 			$id = I('id',0,'intval');
 			$data = M("fangkuan_history")->where(array('id' => $id))->find();
