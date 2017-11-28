@@ -184,7 +184,7 @@
 			$data = M("fangkuan")->where(array('id' => $id))->find();
 			$result = M("fangkuan_history")->where(array('oid' => $id))->find();
 			if(!$result){
-				if(!empty($data['periods'])){
+				if($data['type']==1){
 					$periods = $data['periods'];
 				}
 				else{
@@ -229,7 +229,6 @@
 			else{
 				$this->error('还款失败');
 			}
-
 		}
 
 		public function upload(){
