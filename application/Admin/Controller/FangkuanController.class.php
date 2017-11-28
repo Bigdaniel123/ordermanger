@@ -136,7 +136,7 @@
 		public function edit(){
 			$id = I('id');
 			if(empty($id)){
-				$this->error("参数错误111");
+				$this->error("参数错误");
 			}
 			if(IS_POST){
 				$data = I('post.');
@@ -155,70 +155,57 @@
 
 		}
 
+		/**
+		 * 删除功能
+		 */
 		public function delete(){
-			$id = I('id');
-			$ids = I('ids');
-			if(empty($id) && empty($ids)){
+		$id = I('id',0,'intval');
+		if(empty($id)){
+			$this->error('参数错误');
+		}
+		if($this->fangkuan_model->where(array('id' => $id))->delete() === false){
+			$this->error('删除失败');
+		}
+		else{
+			M('FangkuanHistory')->where(array('oid'=>$id))->delete();
+			$this->success("删除成功");
+		}
+
+	}
+
+		/**
+		 * 查询并更新分期数据
+		 */
+		public function orderlist(){
+			$id = I('id',0,'intval');
+			if(empty($id)){
 				$this->error('参数错误');
 			}
-			if($id){
-				if($this->fangkuan_model->where(array('id' => $id))->delete() == false){
-					$this->error('删除失败');
+			$data = M("fangkuan")->where(array('id' => $id))->find();
+			$result = M("fangkuan_history")->where(array('oid' => $id))->find();
+			if(!$result){
+				if(!empty($data['periods'])){
+					$periods = $data['periods'];
 				}
 				else{
-					$this->success("删除成功");
+					$periods = $data['w_periods'];
 				}
-			}
-			if($ids){
-				foreach($ids as $id){
-					if($this->fangkuan_model->where(array('id' => $id))->delete() == false){
-						$this->error('删除失败');
-					}
+				$saveData = array();
+				$money = $data['paid_money'];
+				$every_pay = ($money / $periods);
+				$time=time();
+				for($i = 1; $i <= $periods; $i++){
+					$saveData[] = array(
+						'oid'          => $data['id'],
+						'qichu'        => $i,
+						'create_time'  => $time,
+						'payment_time' => ($data['type'] == 1) ? strtotime($data['addtime']) + ($i * 24 * 3600) : strtotime($data['addtime']) + ($i * 7 * 24 * 3600),
+						'type'         => $data['type'],
+						'every_pay'    => $every_pay,
+					);
 				}
-				$this->success('删除成功');
+				M("Fangkuan_history")->addAll($saveData);
 			}
-		}
-
-		public function order(){
-			$id = I('id');
-			$data = M("fangkuan")->where(array('id' => $id))->find();
-			if( ! empty($data['periods'])){
-				$periods = $data['periods'];
-			}
-			else{
-				$periods = $data['w_periods'];
-			}
-			$saveData = array();
-			$money = $data['paid_money'];
-			$every_pay = ($money / $periods);
-			for($i = 1; $i <= $periods; $i++){
-				$saveData[] = array(
-					'oid'          => $data['id'],
-					'qichu'        => $i,
-					'create_time'  => time(),
-					'payment_time' => ($data['type'] == 1) ? strtotime($data['addtime']) + ($i * 24 * 3600) : strtotime($data['addtime']) + ($i * 7 * 24 * 3600),
-					'type'         => $data['type'],
-					'every_pay'    => $every_pay,
-				);
-			}
-			$result = M("Fangkuan_history")->where(array('oid' => $id))->find();
-			if($result){
-				$this->error('请勿重复生成还款计划', U('Fangkuan/index'));
-			}
-			else{
-				$res = M("Fangkuan_history")->addAll($saveData);
-			}
-			if($res){
-				$this->success('生成还款计划', U('Fangkuan/index'));
-			}
-
-		}
-
-		public function orderlist(){
-			$id = get_current_admin_id() == 1 ? array(
-				'gt',
-				0,
-			) : I('id');
 			$order = M("fangkuan_history")->alias('f')->field('f.every_pay as f_pay,f.*,o.* ,f.id as f_id')->join(' __FANGKUAN__ as o on f.oid= o.id', 'right')->where(array('o.id' => $id))->select();
 			$this->assign('lists', $order);
 			$this->display();
