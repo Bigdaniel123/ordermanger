@@ -199,7 +199,7 @@
 						'oid'          => $data['id'],
 						'qichu'        => $i,
 						'create_time'  => $time,
-						'payment_time' => ($data['type'] == 1) ? strtotime($data['addtime']) + ($i * 24 * 3600) : strtotime($data['addtime']) + ($i * 7 * 24 * 3600),
+						'payment_time' => ($data['type'] == 1) ? strtotime($data['addtime']) + ($i * 24 * 3600) : strtotime($data['addtime']) + ($i * $data['time_int'] * 24 * 3600),
 						'type'         => $data['type'],
 						'every_pay'    => $every_pay,
 					);
@@ -212,15 +212,19 @@
 		}
 
 		public function huankuan(){
-			$id = I('id');
+			$id = I('id',0,'intval');
 			$data = M("fangkuan_history")->where(array('id' => $id))->find();
-			$data['status'] = 1;
-			$res = M('fangkuan_history')->where(array('id' => $id))->save($data);
-			if($res){
-				$this->success('本期已还', U('Fangkuan/index'));
+			if($data['status']==1){
+				$this->error('本期已还');
+			}
+			$save['status'] = 1;
+			$save['huankuan_time']=time();
+			$res = M('fangkuan_history')->where(array('id' => $id))->save($save);
+			if($res !== false){
+				$this->success('还款成功');
 			}
 			else{
-				$this->error('还款失败', U('Fangkuan/order'));
+				$this->error('还款失败');
 			}
 
 		}
