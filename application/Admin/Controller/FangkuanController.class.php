@@ -184,24 +184,17 @@
 			$data = M("fangkuan")->where(array('id' => $id))->find();
 			$result = M("fangkuan_history")->where(array('oid' => $id))->find();
 			if(!$result){
-				if($data['type']==1){
-					$periods = $data['periods'];
-				}
-				else{
-					$periods = $data['w_periods'];
-				}
+				$periods = $data['periods'];
 				$saveData = array();
-				$money = $data['paid_money'];
-				$every_pay = ($money / $periods);
 				$time=time();
 				for($i = 1; $i <= $periods; $i++){
 					$saveData[] = array(
 						'oid'          => $data['id'],
 						'qichu'        => $i,
 						'create_time'  => $time,
-						'payment_time' => ($data['type'] == 1) ? strtotime($data['addtime']) + ($i * 24 * 3600) : strtotime($data['addtime']) + ($i * $data['time_int'] * 24 * 3600),
+						'payment_time' => ($data['type'] == 1) ? strtotime($data['date']) + ($i * 24 * 3600) : strtotime($data['date']) + ($i * $data['time_int'] * 24 * 3600),
 						'type'         => $data['type'],
-						'every_pay'    => $every_pay,
+						'every_pay'    => $data['firstdate_pay'],
 					);
 				}
 				M("Fangkuan_history")->addAll($saveData);
