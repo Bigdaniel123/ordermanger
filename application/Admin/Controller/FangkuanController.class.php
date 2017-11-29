@@ -198,56 +198,45 @@
 				$this->error('参数错误');
 			}
 			$data = M("fangkuan")->where(array('id' => $id))->find();
-
 			//为空就添加数据
 			$this->_addHistory($id, $data);
-
 			$order = M("fangkuan_history")->alias('f')->field('f.every_pay as f_pay,f.*,o.* ,f.id as f_id')->join(' __FANGKUAN__ as o on f.oid= o.id', 'right')->where(array('o.id' => $id))->order('f.id asc')->select();
 			$this->assign('lists', $order);
 			$this->assign('data', $data);
 			$this->display();
 		}
 
-
 		/**
-		 * 还款列表
+		 * 还款
 		 */
 		public function huankuan(){
 			$id = I('id', 0, 'intval');
-
 			if(IS_POST){
 				$repayment_img = I('repayment_img');
-
-				$fangkuan  =M("fangkuan_history")->where(array('id'=>$id));
-
-				$fangkuanData  = $fangkuan->find();
-				$oid  =$fangkuanData['oid'];
+				$fangkuan = M("fangkuan_history")->where(array('id' => $id));
+				$fangkuanData = $fangkuan->find();
 				if(empty($fangkuanData)){
 					$this->error("参数非法");
 				}
-				if($fangkuanData['status']==1){
+				if($fangkuanData['status'] == 1){
 					$this->error('本期已还');
 				}
-
-
-				$fangkuan->status=1;
-				$fangkuan->huankuan_time=time();
-
+				$fangkuan->status = 1;
+				$fangkuan->huankuan_time = time();
 				//如果有图片
-				if(!empty($repayment_img)){
+				if( ! empty($repayment_img)){
 					$repayment_img = "data/upload/" . $repayment_img;
 				}
-
 				$fangkuan->repayment_img = $repayment_img;
-				$res  =$fangkuan->save();
-				if($res===false){
+				$res = $fangkuan->save();
+				if($res === false){
 					$this->error('还款失败');
-				}else{
+				}
+				else{
 					$this->success('还款成功');
 				}
 			}
-
-			$this->assign('id',$id);
+			$this->assign('id', $id);
 			$this->display();
 
 		}
