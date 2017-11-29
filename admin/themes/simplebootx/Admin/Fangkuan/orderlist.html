@@ -28,7 +28,6 @@
                     <th width="100px">期数</th>
                     <th width="100px">期还款金额</th>
                 </eq>
-                <th width="100px">确认人</th>
                 <th>类型</th>
                 <th >{:L('ACTIONS')}/还款时间</th>
             </tr>
@@ -45,14 +44,16 @@
                     <td>{$vo.periods}</td>
 
                     <td>{$vo.f_pay}</td>
-                    <td>{$vo.identify_person}</td>
                     <td><eq name="vo.type" value="1">天<else/>期</eq></td>
                     <td>
-                        <!--<a href="javascript:;" onclick="showorder('{:U('Fangkuan/huankuan',array('oid'=>$vo['oid']))}')" class="layui-btn layui-btn-primary" >查看此人分期 |</a>-->
                         <empty name="vo.huankuan_time">
-                        <a href="{:U('Fangkuan/huankuan',array('id'=>$vo['f_id']))}" class="js-ajax-dialog-btn" data-msg="确定还款吗？">还款</a>
+                        <a href="javascript:open_iframe_dialog('{:U('fangkuan/huankuan',array('id'=>$vo['f_id']))}','确定还款')">还款</a>
                         <else />
+                        <!--还款时间-->
                         {$vo.huankuan_time|date="Y-m-d H:i:s",###}
+                        &nbsp;&nbsp;&nbsp;
+                        <!--图片预览-->
+                        <img id="photo-{$key}-preview" src="{$vo.repayment_img}" style="height:36px;width: 36px;" onclick="parent.image_preview_dialog(this.src);">
                         </empty>
                     </td>
                 </tr>
@@ -64,5 +65,6 @@
     <div class="pagination">{$page}</div>
 </div>
 <script src="__PUBLIC__/js/common.js"></script>
+
 </body>
 </html>

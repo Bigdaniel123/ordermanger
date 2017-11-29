@@ -2,6 +2,7 @@
 
 	namespace Admin\Controller;
 	use Common\Controller\AdminbaseController;
+	use Think\Model;
 
 	class FangkuanController extends AdminbaseController{
 		protected $fangkuan_model;
@@ -110,15 +111,12 @@
 				if(empty($data['firstdate_pay'])){
 					$this->error('请填写第一期本金及利息');
 				}
-
 				if(empty($data['interest'])){
 					$this->error('请填写利息');
 				}
-
 				if(empty($data['periods'])){
 					$this->error('请填写期数');
 				}
-
 				if( ! empty($type)){
 					//按期
 					if($type == 1){
@@ -129,7 +127,6 @@
 
 				}
 				$result = M('fangkuan')->add($data);
-
 				if($result){
 					$this->success('添加成功', U("Fangkuan/index"));
 				}
@@ -154,12 +151,10 @@
 				$data = I('post.');
 				$data['id'] = $id;
 				//判断图片是否更换过
-				foreach($data['imgs'] as $k =>$v){
-					$data['imgs'][$k]=strpos($v, 'data/upload')===false?'data/upload/'.$v:$v;
+				foreach($data['imgs'] as $k => $v){
+					$data['imgs'][ $k ] = strpos($v, 'data/upload') === false ? 'data/upload/' . $v : $v;
 				}
-				$data['imgs']=json_encode($data['imgs']);
-
-
+				$data['imgs'] = json_encode($data['imgs']);
 				/*验证参数*/
 				if($this->fangkuan_model->save($data) !== false){
 					$this->success("更新成功");
@@ -170,7 +165,7 @@
 			}
 			$fangkuan = $this->fangkuan_model->where(array('id' => $id))->find();
 			//decode 图片
-			$fangkuan['imgs']=json_decode($fangkuan['imgs'],true);
+			$fangkuan['imgs'] = json_decode($fangkuan['imgs'], true);
 			$this->assign('fangkuan', $fangkuan);
 			$this->display();
 
@@ -180,34 +175,93 @@
 		 * 删除功能
 		 */
 		public function delete(){
-		$id = I('id',0,'intval');
-		if(empty($id)){
-			$this->error('参数错误');
-		}
-		if($this->fangkuan_model->where(array('id' => $id))->delete() === false){
-			$this->error('删除失败');
-		}
-		else{
-			M('FangkuanHistory')->where(array('oid'=>$id))->delete();
-			$this->success("删除成功");
-		}
+			$id = I('id', 0, 'intval');
+			if(empty($id)){
+				$this->error('参数错误');
+			}
+			if($this->fangkuan_model->where(array('id' => $id))->delete() === false){
+				$this->error('删除失败');
+			}
+			else{
+				M('FangkuanHistory')->where(array('oid' => $id))->delete();
+				$this->success("删除成功");
+			}
 
-	}
+		}
 
 		/**
-		 * 查询并更新分期数据
+		 * 创建并展示订单
 		 */
 		public function orderlist(){
-			$id = I('id',0,'intval');
+			$id = I('id', 0, 'intval');
 			if(empty($id)){
 				$this->error('参数错误');
 			}
 			$data = M("fangkuan")->where(array('id' => $id))->find();
+
+			//为空就添加数据
+			$this->_addHistory($id, $data);
+
+			$order = M("fangkuan_history")->alias('f')->field('f.every_pay as f_pay,f.*,o.* ,f.id as f_id')->join(' __FANGKUAN__ as o on f.oid= o.id', 'right')->where(array('o.id' => $id))->order('f.id asc')->select();
+			$this->assign('lists', $order);
+			$this->assign('data', $data);
+			$this->display();
+		}
+
+
+		/**
+		 * 还款列表
+		 */
+		public function huankuan(){
+			$id = I('id', 0, 'intval');
+
+			if(IS_POST){
+				$repayment_img = I('repayment_img');
+
+				$fangkuan  =M("fangkuan_history")->where(array('id'=>$id));
+
+				$fangkuanData  = $fangkuan->find();
+				$oid  =$fangkuanData['oid'];
+				if(empty($fangkuanData)){
+					$this->error("参数非法");
+				}
+				if($fangkuanData['status']==1){
+					$this->error('本期已还');
+				}
+
+
+				$fangkuan->status=1;
+				$fangkuan->huankuan_time=time();
+
+				//如果有图片
+				if(!empty($repayment_img)){
+					$repayment_img = "data/upload/" . $repayment_img;
+				}
+
+				$fangkuan->repayment_img = $repayment_img;
+				$res  =$fangkuan->save();
+				if($res===false){
+					$this->error('还款失败');
+				}else{
+					$this->success('还款成功');
+				}
+			}
+
+			$this->assign('id',$id);
+			$this->display();
+
+		}
+
+		/**
+		 * @param $id       fangkuan 表的id
+		 * @param $data     fangkuan表的值
+		 */
+		private function _addHistory($id, $data){
 			$result = M("fangkuan_history")->where(array('oid' => $id))->find();
-			if(!$result){
+			if( ! $result){
 				$periods = $data['periods'];
 				$saveData = array();
-				$time=time();
+				$time = time();
 				for($i = 1; $i <= $periods; $i++){
 					$saveData[] = array(
 						'oid'          => $data['id'],
@@ -220,61 +274,6 @@
 				}
 				M("Fangkuan_history")->addAll($saveData);
 			}
-			$order = M("fangkuan_history")->alias('f')->field('f.every_pay as f_pay,f.*,o.* ,f.id as f_id')->join(' __FANGKUAN__ as o on f.oid= o.id', 'right')->where(array('o.id' => $id))->select();
-			$this->assign('lists', $order);
-			$this->assign('data', $data);
-			$this->display();
 		}
 
-		/**
-		 * 还款列表
-		 */
-		public function huankuan(){
-			$id = I('id',0,'intval');
-			$data = M("fangkuan_history")->where(array('id' => $id))->find();
-			if($data['status']==1){
-				$this->error('本期已还');
-			}
-			$save['status'] = 1;
-			$save['huankuan_time']=time();
-			$res = M('fangkuan_history')->where(array('id' => $id))->save($save);
-			if($res !== false){
-				$this->success('还款成功');
-			}
-			else{
-				$this->error('还款失败');
-			}
-		}
-
-		public function upload(){
-			if(IS_POST){
-				$upload = new \Think\Upload();
-				$upload->maxSize = 3145728;
-				$upload->exts = array();
-				$upload->rootPath = './data/upload/';
-				$upload->savePath = '';
-				$info = $upload->upload();
-				if( ! $info){
-					$this->error($upload->getError());
-				}
-				else{
-					$this->success('上传成功！', U('Fangkuan/index'));
-				}
-			}
-			$this->display();
-		}
-
-		function add1(){
-			$arr = array(
-				array(
-					'age'   => 20,
-					'name'  => 'hhhh',
-					'id'    => '1',
-					'name1' => '444',
-				),
-			);
-			foreach($arr as $k => $v){
-
-			}
-		}
 	}
